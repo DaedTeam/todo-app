@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "name": "Magneton",
+      "item": "Choice Scarf",
+      "Ability": "Magnet Pull",
+      "EVs": "252 SpA / 4 SpD / 252 Spe",
+      "Nature": "Timid Nature",
+      "moves": [
+        "Thunderbolt",
+        "Volt Switch",
+        "Flash Cannon",
+        "Toxic/Steel Beam"
+      ]
+    },
+    {
+      "name": "Magnezone",
+      "item": "Electrium Z",
+      "Ability":"Sturdy",
+      "raw": "Magnezone @ Electrium Z\nAbility: Sturdy\nEVs: 80 HP / 204 SpA / 224 Spe\nIVs: 0 Atk\nModest Nature\n- Zap Cannon\n- Metal Sound\n- Electroweb\n- Protect"
+    }
+  ]
+}

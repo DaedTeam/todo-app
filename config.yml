@@ -1,0 +1,6 @@
+db:
+  mongo:
+    url: mongodb://127.0.0.1:27011/?compressors=disabled&gssapiServiceName=mongodb
+    db_name: "cube_engine"
+  postpres:
+    url: postgresql+asyncpg://vgrglmzhgvbeoz:7c4e5b582152b2f09bdd5a2f015ca5cc953c2a95965dbb42960a9ffb40e03d26@ec2-52-23-45-36.compute-1.amazonaws.com:5432/dde4pp69f52p6s

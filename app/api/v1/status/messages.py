@@ -1,0 +1,27 @@
+# status error
+PAGING_ERROR = "PAGING_ERROR"
+VALIDATE_ERROR = "VALIDATE_ERROR"
+CUSTOMER_NOT_EXISTS = "CUSTOMER_NOT_EXISTS"
+USER_NOT_EXISTS = "USER_NOT_EXISTS"
+PROVINCE_NOT_EXISTS = 'PROVINCE_NOT_EXISTS'
+INVALID_OBJECT_ID = "INVALID_OBJECT_ID"
+
+# status success
+ADD_SUCCESS = "ADD_SUCCESS"
+UPDATE_SUCCESS = "UPDATE_SUCCESS"
+DELETE_SUCCESS = "DELETE_SUCCESS"
+
+MESSAGE_STATUS = {
+    # error
+    PAGING_ERROR: "Can not found page!",
+    CUSTOMER_NOT_EXISTS: "Customer not exists!",
+    USER_NOT_EXISTS: "User not exists",
+    PROVINCE_NOT_EXISTS: "Province not exists",
+    INVALID_OBJECT_ID: "Invalid object id",
+
+    # success
+    DELETE_SUCCESS: "Delete success",
+    ADD_SUCCESS: "Add success",
+    UPDATE_SUCCESS: "Update success"
+
+}
