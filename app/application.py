@@ -16,7 +16,9 @@ def create_app():
     container.mongodb()
     # db = container.db()
     # db.create_database()
-    app = FastAPI()
+    app = FastAPI(
+        docs_url="/"
+    )
     app.container = container
     app.include_router(routers.router)
     return app
