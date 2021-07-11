@@ -5,10 +5,12 @@ setup:
 build:
   docker:
     web: Dockerfile
-    worker: worker/Dockerfile
+#    worker: worker/Dockerfile
   config:
     RAILS_ENV: development
     FOO: bar
+run:
+  web: uvicorn app.main:app --reload
 #release:
 #  command:
 #    - ./deployment-task.sh
