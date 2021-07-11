@@ -24,3 +24,5 @@ PyYAML~=5.4.1
 alembic~=1.6.5
 starlette~=0.14.2
 pymongo~=3.11.4
+dependency-injector==4.34.0
+asyncpg

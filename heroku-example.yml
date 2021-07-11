@@ -10,7 +10,7 @@ build:
     RAILS_ENV: development
     FOO: bar
 run:
-  web: uvicorn app.main:app --reload
+  web: uvicorn app.main:app --reload --host 0.0.0.0 --port $PORT
 #release:
 #  command:
 #    - ./deployment-task.sh
