@@ -1,6 +1,6 @@
 from sqlalchemy import Column, DateTime, Integer, String
 
-from app.db.postpres.base import Base
+from app.db.postpres.postpresdatabase import Base
 
 
 class User(Base):

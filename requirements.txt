@@ -19,3 +19,8 @@ SQLAlchemy==1.4.18 #https://docs.sqlalchemy.org/en/14/
 #engine
 cx-Oracle==8.2.1 #https://pypi.org/project/cx-Oracle/8.2.1/
 motor==2.4.0 #https://pypi.org/project/motor/2.4.0/
+
+PyYAML~=5.4.1
+alembic~=1.6.5
+starlette~=0.14.2
+pymongo~=3.11.4
