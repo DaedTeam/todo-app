@@ -3,7 +3,7 @@ from typing import List
 
 from starlette import status
 
-from app.api.v1.schemas.baseenhancedmodel import BaseEnhancedModel
+from app.api.v1.schemas.base import BaseEnhancedModel
 from app.api.v1.status.exceptions import ExceptionHandle
 from app.api.v1.status.messages import INVALID_OBJECT_ID, MESSAGE_STATUS
 from app.repositories.base import BaseRepository
@@ -29,6 +29,10 @@ class ServiceBase:
         total_page = math.ceil(total_items / page_limit)
         current_page = page_num
         return self.response_paging(objects, total_items=total_items, total_page=total_page, current_page=current_page)
+
+    async def mg_get_by_id(self, obj_id):
+        obj = await self._repos.mg_find_by_id(obj_id)
+        return self.response(obj)
 
     async def mg_create(self, obj: BaseEnhancedModel):
         created_issue = await self._repos.mg_insert(obj)

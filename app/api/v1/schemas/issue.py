@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List
 
-from app.api.v1.schemas.baseenhancedmodel import BaseEnhancedModel
+from app.api.v1.schemas.base import BaseEnhancedModel
 from app.api.v1.schemas.task import TaskMongoSchema
 
 
@@ -22,7 +22,7 @@ class IssueBase(BaseEnhancedModel):
 
 
 class IssueCreate(IssueBase):
-    user_id: int
+    user_id: str
 
 
 class IssueUpdate(IssueBase):
@@ -35,4 +35,5 @@ class IssueSchema(IssueBase):
 
 class IssueMongoSchema(IssueBase):
     object_id: str
+    user_id: str
     task: List[TaskMongoSchema] = []

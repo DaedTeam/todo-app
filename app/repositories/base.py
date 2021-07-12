@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List, Any
 
 from bson.objectid import ObjectId
 from pymongo.results import DeleteResult, UpdateResult
@@ -6,7 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncResult
 from sqlalchemy.sql.functions import count
 
-from app.api.v1.schemas.baseenhancedmodel import BaseEnhancedModel
+from app.api.v1.schemas.base import BaseEnhancedModel
 from app.db.mongo.base import MongoDatabase
 from app.db.postpres.postpresdatabase import PostpresDatabase
 
@@ -28,20 +28,25 @@ class BaseRepository:
         n = await self._collection.count_documents({})
         return n
 
-    async def mg_find_all(self, skip: int = 0, limit: int = 100):
+    async def mg_find_all(self, skip: int = 0, limit: int = 100) -> List[BaseEnhancedModel]:
         pipeline = [
             {"$skip": skip},
             {"$limit": limit}
         ]
-        return self.mg_find(pipeline=pipeline)
+        return await self._mg_find(pipeline=pipeline)
 
-    async def mg_find(self, **kwargs):
+    async def mg_find_by_id(self, obj_id) -> Optional[BaseEnhancedModel]:
+        found_dict = await self._collection.find_one({"_id": ObjectId(obj_id)})
+        return BaseEnhancedModel.construct(**found_dict)
+
+    async def _mg_find(self, **kwargs):
         pipeline = kwargs.get("pipeline")
         cursor = self._collection.aggregate(pipeline)
         db_models = await cursor.to_list(length=100)
         output_models = []
         # add mongo ObjectId
         for item in db_models:
+            print(item)
             output_models.append(BaseEnhancedModel.construct(**item))
         return output_models
 
@@ -50,7 +55,7 @@ class BaseRepository:
         try:
             inserted_item = await self._collection.find_one({"_id": ObjectId(rs.inserted_id)})
             return BaseEnhancedModel.construct(**inserted_item)
-        except Exception: # noqa
+        except Exception:  # noqa
             return None
 
     async def mg_update(self, obj: BaseEnhancedModel, obj_id) -> Optional[BaseEnhancedModel]:

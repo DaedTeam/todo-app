@@ -6,7 +6,7 @@ from app.api.v1.services.note_service import NoteService
 from app.api.v1.services.task_service import TaskService
 from app.api.v1.services.user_service import UserService
 from app.db.mongo.base import MongoDatabase
-from app.db.mongo.collections import COLLECTION_ISSUE
+from app.db.mongo.collections import COLLECTION_ISSUE, COLLECTION_USER, COLLECTION_LABEL, COLLECTION_NOTE, COLLECTION_TASK
 from app.db.postpres.postpresdatabase import PostpresDatabase
 from app.repositories.issue_repos import IssueRepository
 from app.repositories.label_repos import LabelRepository
@@ -25,14 +25,16 @@ class Container(containers.DeclarativeContainer):
         db_name=config.db.mongo.db_name
     )
 
-    user_repository = providers.Factory(
+    user_repos = providers.Factory(
         UserRepository,
-        db=postpres_db
+        db=postpres_db,
+        mongodb=mongodb,
+        collection_name=COLLECTION_USER
     )
 
     user_service = providers.Factory(
         UserService,
-        user_repos=user_repository,
+        repos=user_repos,
     )
 
     issue_repos = providers.Factory(
@@ -49,30 +51,36 @@ class Container(containers.DeclarativeContainer):
 
     label_repos = providers.Factory(
         LabelRepository,
-        db=postpres_db
+        db=postpres_db,
+        mongodb=mongodb,
+        collection_name=COLLECTION_LABEL
     )
 
     label_service = providers.Factory(
         LabelService,
-        label_repos=label_repos
+        repos=label_repos,
     )
 
     note_repos = providers.Factory(
         NoteRepository,
-        db=postpres_db
+        db=postpres_db,
+        mongodb=mongodb,
+        collection_name=COLLECTION_NOTE
     )
 
     note_service = providers.Factory(
         NoteService,
-        note_repos=note_repos
+        repos=note_repos
     )
 
     task_repos = providers.Factory(
         TaskRepository,
-        db=postpres_db
+        db=postpres_db,
+        mongodb=mongodb,
+        collection_name=COLLECTION_TASK
     )
 
     task_service = providers.Factory(
         TaskService,
-        task_repos=task_repos
+        repos=task_repos
     )

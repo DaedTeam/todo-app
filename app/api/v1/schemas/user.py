@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from app.api.v1.schemas.baseenhancedmodel import BaseEnhancedModel
+from app.api.v1.schemas.base import BaseEnhancedModel
 
 
 class EGender(str, Enum):
@@ -24,9 +24,12 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(UserBase):
-    id: int
     pass
 
 
 class UserSchema(UserBase):
     id: int
+
+
+class UserMongoSchema(UserBase):
+    object_id: str

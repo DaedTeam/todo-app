@@ -1,6 +1,6 @@
+from app.api.v1.services.base import ServiceBase
 from app.repositories.task_repos import TaskRepository
 
 
-class TaskService:
-    def __init__(self, task_repos: TaskRepository):
-        self.task_repos = task_repos
+class TaskService(ServiceBase):
+    pass

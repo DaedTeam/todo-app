@@ -1,6 +1,10 @@
+from typing import List
+
+from bson import ObjectId
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncResult
 
+from app.api.v1.schemas.base import BaseEnhancedModel
 from app.db.mongo.collections import COLLECTION_TASK
 from app.db.postpres.base import Issue
 from app.repositories.base import BaseRepository
@@ -44,7 +48,7 @@ class IssueRepository(BaseRepository):
             await session.execute(stmt)
             await session.commit()
 
-    async def mg_find_all(self, skip: int = 0, limit: int = 100):
+    async def mg_find_all(self, skip: int = 0, limit: int = 100) -> List[BaseEnhancedModel]:
         pipeline = [
             {"$skip": skip},
             {"$limit": limit},
@@ -52,10 +56,11 @@ class IssueRepository(BaseRepository):
                 "$lookup":
                     {
                         "from": COLLECTION_TASK,
-                        "localField": "issue_id",
+                        "localField": "_id",
                         "foreignField": "issue_id",
                         "as": "tasks"
                     }
             }
         ]
-        return await self.mg_find(pipeline=pipeline)
+        print(pipeline)
+        return await self._mg_find(pipeline=pipeline)

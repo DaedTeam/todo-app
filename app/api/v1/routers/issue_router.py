@@ -28,9 +28,26 @@ async def get_list(
         authorization: Optional[str] = Header(None),
         service: IssueService = Depends(Provide[Container.issue_service])
 ):
-    token = AuthUtil.decode_token(authorization)
+    # token = AuthUtil.decode_token(authorization)
+    token = "token"
     issues = await service.mg_get_all(token, page_num, page_limit)
     return PagingResponse[IssueMongoSchema](**issues)
+
+
+@router.get(
+    path="/{issue_id}",
+    responses=swagger_response(
+        response_model=ResponseData[IssueMongoSchema],
+        success_status_code=status.HTTP_200_OK
+    )
+)
+@inject
+async def get_issue_by_id(
+        issue_id: str,
+        service: IssueService = Depends(Provide[Container.issue_service])
+):
+    issue = await service.mg_get_by_id(issue_id)
+    return ResponseData[IssueMongoSchema](**issue)
 
 
 @router.post(
