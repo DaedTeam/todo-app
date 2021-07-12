@@ -1,7 +1,0 @@
-db:
-  mongo:
-#    url: mongodb://127.0.0.1:27011/?compressors=disabled&gssapiServiceName=mongodb
-    url: mongodb+srv://tik:123@cluster0.bh9kt.mongodb.net/retryWrites=true&w=majority
-    db_name: "cube_engine"
-  postpres:
-    url: postgresql+asyncpg://wzpqbmpymwqhvf:39e9503a50738713955fe863f8c6b98e2187ee811824dad685e2ca8afdef7dbe@ec2-3-216-92-193.compute-1.amazonaws.com:5432/d9bcbmlgt303oq

@@ -18,11 +18,11 @@ from app.repositories.user_repos import UserRepository
 class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
 
-    postpres_db = providers.Singleton(PostpresDatabase, db_url=config.db.postpres.url)
+    postpres_db = providers.Singleton(PostpresDatabase, db_url=config.postpres_url)
     mongodb = providers.Singleton(
         MongoDatabase,
-        db_url=config.db.mongo.url,
-        db_name=config.db.mongo.db_name
+        db_url=config.mongo_url,
+        db_name=config.mongo_db
     )
 
     user_repos = providers.Factory(
