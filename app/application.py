@@ -9,7 +9,7 @@ from app.containers import Container
 
 
 def create_app():
-    test_mongodb()
+    # test_mongodb()
     container = Container()
     container.config.from_yaml('config.yml')
     container.wire(modules=[routers, user_router, issue_router, note_router, label_router, task_router])
@@ -26,7 +26,7 @@ def create_app():
 
 
 def test_mongodb():
-    url = os.getenv("MONGODB", "mongodb+srv://tik:123@cluster0.bh9kt.mongodb.net/cube_engine?retryWrites=true&w=majority")
+    url = os.getenv("MONGODB", "mongodb+srv://tik:123@cluster0.bh9kt.mongodb.net/cube_engine?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
     db_name = os.getenv("MONGODB", "cube_engine")
     client = MongoClient(url)
     db = client[db_name]
