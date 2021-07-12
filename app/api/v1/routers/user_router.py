@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, Query
 from starlette import status
 
 from app.api.v1.functions import PagingResponse, swagger_response
-from app.api.v1.schemas.user import UserCreate, UserUpdate, UserMongoSchema
+from app.api.v1.schemas.user import UserCreate, UserMongoSchema, UserUpdate
 from app.api.v1.services.user_service import UserService
 from app.containers import Container
 

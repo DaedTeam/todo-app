@@ -5,10 +5,9 @@ from fastapi import APIRouter, Depends, Header
 from starlette import status
 
 from app.api.v1.functions import PagingResponse, ResponseData, swagger_response
-from app.api.v1.schemas.label import LabelMongoSchema, LabelCreate, LabelUpdate
+from app.api.v1.schemas.label import LabelCreate, LabelMongoSchema, LabelUpdate
 from app.api.v1.services.label_service import LabelService
 from app.containers import Container
-from app.utils.auth_util import AuthUtil
 
 router = APIRouter()
 

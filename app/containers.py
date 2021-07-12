@@ -6,7 +6,10 @@ from app.api.v1.services.note_service import NoteService
 from app.api.v1.services.task_service import TaskService
 from app.api.v1.services.user_service import UserService
 from app.db.mongo.base import MongoDatabase
-from app.db.mongo.collections import COLLECTION_ISSUE, COLLECTION_USER, COLLECTION_LABEL, COLLECTION_NOTE, COLLECTION_TASK
+from app.db.mongo.collections import (
+    COLLECTION_ISSUE, COLLECTION_LABEL, COLLECTION_NOTE, COLLECTION_TASK,
+    COLLECTION_USER
+)
 from app.db.postpres.postpresdatabase import PostpresDatabase
 from app.repositories.issue_repos import IssueRepository
 from app.repositories.label_repos import LabelRepository

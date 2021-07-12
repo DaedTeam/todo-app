@@ -1,11 +1,9 @@
-import os
-
 from fastapi import FastAPI
-from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseSettings, Field
-from pymongo import MongoClient
 
-from app.api.v1.routers import routers, note_router, label_router, user_router, issue_router, task_router
+from app.api.v1.routers import (
+    issue_router, label_router, note_router, routers, task_router, user_router
+)
 from app.containers import Container
 
 

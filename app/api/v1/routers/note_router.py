@@ -5,10 +5,9 @@ from fastapi import APIRouter, Depends, Header
 from starlette import status
 
 from app.api.v1.functions import PagingResponse, ResponseData, swagger_response
-from app.api.v1.schemas.note import NoteMongoSchema, NoteCreate, NoteUpdate
+from app.api.v1.schemas.note import NoteCreate, NoteMongoSchema, NoteUpdate
 from app.api.v1.services.note_service import NoteService
 from app.containers import Container
-from app.utils.auth_util import AuthUtil
 
 router = APIRouter()
 

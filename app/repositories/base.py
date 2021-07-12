@@ -1,4 +1,4 @@
-from typing import Optional, List, Any
+from typing import List, Optional
 
 from bson.objectid import ObjectId
 from pymongo.results import DeleteResult, UpdateResult

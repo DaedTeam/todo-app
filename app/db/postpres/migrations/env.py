@@ -3,9 +3,8 @@ import pathlib
 from logging.config import fileConfig
 
 import yaml
-from alembic.config import Config
-
 from alembic import context
+from alembic.config import Config
 from sqlalchemy.ext.asyncio import create_async_engine
 
 from app.db.postpres.base import Base

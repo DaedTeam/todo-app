@@ -5,10 +5,9 @@ from fastapi import APIRouter, Depends, Header
 from starlette import status
 
 from app.api.v1.functions import PagingResponse, ResponseData, swagger_response
-from app.api.v1.schemas.task import TaskMongoSchema, TaskCreate, TaskUpdate
+from app.api.v1.schemas.task import TaskCreate, TaskMongoSchema, TaskUpdate
 from app.api.v1.services.task_service import TaskService
 from app.containers import Container
-from app.utils.auth_util import AuthUtil
 
 router = APIRouter()
 
