@@ -1,4 +1,7 @@
 from datetime import datetime
+from uuid import UUID
+
+from bson import ObjectId
 
 from app.api.v1.schemas.base import BaseEnhancedModel
 
@@ -24,5 +27,6 @@ class NoteSchema(NoteBase):
 
 
 class NoteMongoSchema(NoteBase):
-    object_id: str
+    _id: ObjectId
+    object_id: UUID
     user_id: str

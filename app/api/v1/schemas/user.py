@@ -1,5 +1,8 @@
 from datetime import datetime
 from enum import Enum
+from uuid import UUID
+
+from bson import ObjectId
 
 from app.api.v1.schemas.base import BaseEnhancedModel
 
@@ -32,4 +35,5 @@ class UserSchema(UserBase):
 
 
 class UserMongoSchema(UserBase):
-    object_id: str
+    _id: ObjectId
+    object_id: UUID

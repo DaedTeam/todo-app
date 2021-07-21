@@ -1,6 +1,9 @@
 from datetime import datetime
 from enum import Enum
 from typing import List
+from uuid import UUID
+
+from bson import ObjectId
 
 from app.api.v1.schemas.base import BaseEnhancedModel
 from app.api.v1.schemas.task import TaskMongoSchema
@@ -34,6 +37,7 @@ class IssueSchema(IssueBase):
 
 
 class IssueMongoSchema(IssueBase):
-    object_id: str
+    _id: ObjectId
+    object_id: UUID
     user_id: str
-    task: List[TaskMongoSchema] = []
+    tasks: List[TaskMongoSchema] = []

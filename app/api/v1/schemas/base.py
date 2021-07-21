@@ -1,16 +1,15 @@
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional, Type, Union
+from typing import Union
 
 from pydantic import BaseModel
 
 
 class BaseEnhancedModel(BaseModel):
 
-    @classmethod
-    def construct(cls: Type['Model'], _fields_set: Optional['SetStr'] = None, **values: Any) -> 'Model':
-        values["object_id"] = str(values.get("_id", None))
-        return super().construct(_fields_set=_fields_set, **values)
+    # @classmethod
+    # def construct(cls: Type['Model'], _fields_set: Optional['SetStr'] = None, **values: Any) -> 'Model':
+    #     return super().construct(_fields_set=_fields_set, **values)
 
     def dict(
             self,

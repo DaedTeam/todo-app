@@ -1,3 +1,7 @@
+from uuid import UUID
+
+from bson import ObjectId
+
 from app.api.v1.schemas.base import BaseEnhancedModel
 
 
@@ -19,5 +23,6 @@ class LabelSchema(LabelBase):
 
 
 class LabelMongoSchema(LabelBase):
-    object_id: str
+    _id: ObjectId
+    object_id: UUID
     user_id: str

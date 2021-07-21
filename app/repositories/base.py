@@ -1,3 +1,4 @@
+import uuid
 from typing import List, Optional
 
 from bson.objectid import ObjectId
@@ -46,12 +47,14 @@ class BaseRepository:
         output_models = []
         # add mongo ObjectId
         for item in db_models:
-            print(item)
             output_models.append(BaseEnhancedModel.construct(**item))
         return output_models
 
     async def mg_insert(self, obj: BaseEnhancedModel) -> Optional[BaseEnhancedModel]:
-        rs = await self._collection.insert_one(obj.dict())
+        d = obj.dict()
+        object_id = uuid.uuid1()
+        d["object_id"] = object_id
+        rs = await self._collection.insert_one(d)
         try:
             inserted_item = await self._collection.find_one({"_id": ObjectId(rs.inserted_id)})
             return BaseEnhancedModel.construct(**inserted_item)

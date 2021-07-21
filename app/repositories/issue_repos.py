@@ -1,10 +1,10 @@
 from typing import List
 
-from bson import ObjectId
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncResult
 
 from app.api.v1.schemas.base import BaseEnhancedModel
+from app.api.v1.schemas.issue import IssueMongoSchema
 from app.db.mongo.collections import COLLECTION_TASK
 from app.db.postpres.base import Issue
 from app.repositories.base import BaseRepository
@@ -56,11 +56,16 @@ class IssueRepository(BaseRepository):
                 "$lookup":
                     {
                         "from": COLLECTION_TASK,
-                        "localField": "_id",
+                        "localField": "object_id",
                         "foreignField": "issue_id",
                         "as": "tasks"
                     }
             }
         ]
-        print(pipeline)
-        return await self._mg_find(pipeline=pipeline)
+        cursor = self._collection.aggregate(pipeline)
+        db_models = await cursor.to_list(length=100)
+        output_models = []
+        # add mongo ObjectId
+        for item in db_models:
+            output_models.append(IssueMongoSchema(**item))
+        return output_models
